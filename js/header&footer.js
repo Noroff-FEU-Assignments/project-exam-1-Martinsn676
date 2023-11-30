@@ -1,5 +1,5 @@
 document.querySelector("header").innerHTML=`${headerTemplate()}`
-
+document.querySelector("footer").innerHTML=`${footerTemplate()}`
 if(document.title==="Shop"){
     document.querySelector(".pc .shopLink").classList.add("active")
     document.querySelector(".mobile .shopLink").classList.add("active")
@@ -13,7 +13,6 @@ if(document.title==="Blogs"){
     document.querySelector(".mobile .blogLink").classList.add("active")
 }
 if(document.title==="Contact us"){
-    document.querySelector(".pc .contactLink").classList.add("active")
     document.querySelector(".mobile .contactLink").classList.add("active")
 }
 
@@ -26,10 +25,10 @@ if(modal){
  const searchField = document.querySelector('#search')
 
 if(searchField){
-            searchField.innerHTML= `<div class="flex-column">
+            searchField.innerHTML= `
                 <input id="search-input"></input>
                 <section id="search-container" class="flex-row flex-wrap"></section> 
-                </div>
+              
             `;
 searchContainer = document.querySelector("#search-container")
                 searchContainer.innerHTML =""
@@ -39,7 +38,7 @@ searchContainer = document.querySelector("#search-container")
 }
 
 document.querySelector("#headerLinkButton").addEventListener("click",()=>{
-
+    nannyBall=true
     document.querySelector("#header .mobile").classList.toggle("hide")
     document.querySelector(".headerLinks.mobile").scrollIntoView({
           

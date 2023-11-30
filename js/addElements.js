@@ -1,5 +1,5 @@
 //console.log("product.js")
- 
+ let clickFlag
 async function addElements(place,headline,itemType,displayQuantity,type,order) {
     
    
@@ -289,6 +289,7 @@ function resizeCheck(changeFrom,width){
         //location.reload();
     }
 }
+desginere = ["Martin","Tonje"]
 function addAttributes(type,element){
     let newHtml = "" 
     element.attributes.forEach(element => {
@@ -312,7 +313,15 @@ function addAttributes(type,element){
             if(type==="dg"){
                 newHtml="Designers: "
                 element.terms.forEach(element => {
-                    newHtml+=`<a href="#${element.name}">${element.name}</a> `
+                    DGname=element.name
+                    desginere.forEach(element=>{
+                        if(DGname===element){
+                        newHtml+=`<a href="#${DGname}">${DGname}</a> `
+                    }else{
+                        newHtml+=`${DGname}`
+                    }
+                    });
+                    
                 });
             }
             if(type==="bgg"){

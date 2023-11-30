@@ -112,6 +112,7 @@ function checkSlider(id,maxElements,slideJump) {
   updateSlider(0, sliderItems,maxElements)
 }
 function updateSlider(adjust, items,maxElements) {
+  console.log(items.length)
   const realQuantiy = items.length-maxElements-1;
   let count = 0;
   let maxShow = window.innerWidth/150;
@@ -122,6 +123,7 @@ function updateSlider(adjust, items,maxElements) {
   if(showNumber>=realQuantiy){
     showNumber-=realQuantiy;
   }
+  console.log(items.length, showNumber)
   if(maxShow>maxElements){
     for (let i = 0; i < items.length; i++) {
       items[i].classList.add("hidden-slider");
@@ -162,5 +164,9 @@ function cleanTime(date){
 function handleFocus(element) {
       quickView(element);
       // You can do additional actions or apply styles here
-    }
-
+}
+window.addEventListener("scroll",()=>{
+  if(window.scrollY>400){
+    document.querySelector("#header .mobile").classList.add("hide")        
+  }
+});

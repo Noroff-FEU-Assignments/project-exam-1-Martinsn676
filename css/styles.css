@@ -32,9 +32,7 @@ h1, h2{
   min-height: 30px;
   background-color: rgb(100,100,100);
 }
-#search-container{
-  width: 100vw;
-}
+
 #search-input{
   width: 200px;
   height: 30px;
@@ -42,7 +40,7 @@ h1, h2{
   
 }
 /* ===== Header ===== */
-header a{
+header a,footer a{
     text-decoration:none;
     color: var(--mainTextColor);
 }
@@ -60,6 +58,9 @@ header a.active{
   #header .mobile,#headerLinkButton{
     display: none;
   }
+  #search-container{
+    width: var(--bodyMaxWidth);
+  }
 }
 @media only screen and (max-width:899px){ 
     #header{
@@ -67,6 +68,9 @@ header a.active{
   }
   #header .pc, #header .mobile.hide{
     display: none;
+  }
+  #search-container{
+    width: 100%;
   }
 }
 .headerLinks.mobile{
@@ -76,6 +80,7 @@ header a.active{
   font-size: 40px;
   
 }
+
 #headerLinkButton{
   padding: 10px;
   width: 100px;
@@ -124,10 +129,18 @@ header a.active{
   width: calc(100% - 5px);
   min-height: 80px;
 }
-#contactPage .label-text{
-  margin: 5px;
+#messageContainer textarea{
+  resize: vertical;
 }
-@media only screen and (max-width:400px){ 
+#contactPage .label-text{
+  
+  display: flex;
+  flex-direction: column;
+}
+#contactPage .label-text .message{
+  height: 20px;
+}
+@media only screen and (max-width:500px){ 
   #contactForms{
     display: flex;
     flex-direction: column;

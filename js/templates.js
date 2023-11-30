@@ -11,17 +11,25 @@ function headerTemplate(){return `
     <a class="homeLink" href="index.html">Home</a>
     <a class="shopLink" href="shop.html">Shop</a>
     <a class="blogLink" href="blogs.html">Blogs</a>
-    <a class="contactLink" href="contactUs.html">Contact</a>
+    
   </div>
   <div class="headerLinks mobile hide flex-column align-column">
     <a class="homeLink" href="index.html">Home</a>
     <a class="shopLink" href="shop.html">Shop</a>
     <a class="blogLink" href="blogs.html">Blogs</a>
-    <a class="contactLink" href="contactUs.html">Contact</a>
+    <a class="contactLink" href="contact.html">Contact</a>
   </div>
 </div>
   `;}
-
+function footerTemplate(){return `
+  <div id="footer" class="links-passive lazy-margin flex-column align-column">
+    <div>
+    <a href="about.html">About us</a>
+    <a href="contact.html">Contact</a>
+    </div>
+  </div>
+`
+}
 function cardSection(functionLog){
   return `
     <div id="topLine">

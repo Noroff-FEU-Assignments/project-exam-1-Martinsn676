@@ -100,16 +100,15 @@ async function addElements(place,headline,itemType,displayQuantity,type,order) {
         container.classList.add("slider")
         loadExtra = document.body.clientWidth/150
         slider=true;
-        maxElements = displayQuantity
-        apiLoadQuantity = type[1]
+        
 
     // add loading-templates    
-        for(let i = 0 ; i < loadExtra && i < maxElements ; i++){
+        for(let i = 0 ; i < loadExtra && i < displayQuantity ; i++){
             container.innerHTML+=`<div class="loading-card ${mainTemplate}"></div>`;
         }
     }else{
-        apiLoadQuantity=displayQuantity
-        for(let i = 0 ; i < displayQuantity ; i++){
+        
+        for(let i = 0 ; i < type[1] ; i++){
             container.innerHTML+=`<div class="loading-card ${mainTemplate}"></div>`;
         }
     }
@@ -134,7 +133,7 @@ async function addElements(place,headline,itemType,displayQuantity,type,order) {
     async function renderElements(elements,quantity,itemType,skipNumber,searching){
         let inSearch = false;
         let elementName
-
+     
         if(searching && searching[0]==="searching"){
             inSearch = true
             searchResultContainer = document.querySelector("#search-container")
@@ -170,10 +169,8 @@ async function addElements(place,headline,itemType,displayQuantity,type,order) {
                     addNumber++
                     continue;
                 }
-
             }
-            
-            
+
             const card = document.createElement('div');
             if(products){
                 card.className = productMainClasses();
@@ -209,9 +206,7 @@ async function addElements(place,headline,itemType,displayQuantity,type,order) {
                 clickFlag = false;
                 
                 //
-            });
-            
-                
+            });   
             if(inSearch){
                 console.log("b")
                 searchResultContainer.appendChild(card);
@@ -226,18 +221,14 @@ async function addElements(place,headline,itemType,displayQuantity,type,order) {
                 }
                 //mainContainer.querySelector("#showingInfo").innerHTML=`Showing ${addNumber} of `
             }
-           
-                
-            
-            
         }
     }
     async function addFunctions(){
-        
+       
         if(slider){
-            allElements = await getApi(apiUrl,[perPage+apiLoadQuantity,urlOrder]);
+            allElements = await getApi(apiUrl,[perPage+type[1],urlOrder]);
             renderElements(allElements,(allElements.length+loadExtra),itemType,addNumber)
-            checkSlider(mainContainer.id,maxElements,type[2])
+            checkSlider(mainContainer.id,displayQuantity,type[2])
         }
         if(loadMore){  
             const loadMoreContainer = mainContainer.querySelector("#loadMoreContainer")

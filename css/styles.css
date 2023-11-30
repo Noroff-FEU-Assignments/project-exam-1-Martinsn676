@@ -1,0 +1,192 @@
+:root {
+    --cardTitleColor: white;
+    --cardBGColor: rgb(120,120,120);
+    --mainTextColor: black;
+    --blogCardHeight:200px;
+    --blogCardWidth:150px;
+    --bodyMaxWidth:800px;
+    --modalImageSize:500px;
+}
+body{
+    max-width: var(--bodyMaxWidth);
+    margin: 0 auto;
+}
+.hideThis{display:none;}
+
+.contain-image{
+    background-size:contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+h1, h2{
+  color: rgb(70,70,70);
+}
+.card h1,.card h2,.card h6{
+  color: white;
+}
+
+/* ===== Search ===== */
+#search{
+  display: flex;
+  min-height: 30px;
+  background-color: rgb(100,100,100);
+}
+#search-container{
+  width: 100vw;
+}
+#search-input{
+  width: 200px;
+  height: 30px;
+  margin: 5px;
+  
+}
+/* ===== Header ===== */
+header a{
+    text-decoration:none;
+    color: var(--mainTextColor);
+}
+header .mobile a{
+  color: white;
+}
+.link-logo{
+  height: 50px;
+}
+header a.active{
+  text-decoration:underline;
+}
+@media only screen and (min-width:900px){ 
+
+  #header .mobile,#headerLinkButton{
+    display: none;
+  }
+}
+@media only screen and (max-width:899px){ 
+    #header{
+    flex-direction: column;
+  }
+  #header .pc, #header .mobile.hide{
+    display: none;
+  }
+}
+.headerLinks.mobile{
+  color: white;
+  width: 100%;
+  background-color: var(--cardBGColor);
+  font-size: 40px;
+  
+}
+#headerLinkButton{
+  padding: 10px;
+  width: 100px;
+  border-radius: 20px;
+  border-color:rgb(100,100,100);
+}
+/* ===== Modal ===== */
+#modal-background{
+  position: fixed;
+  top:0px;
+  left: 0px;
+  width:100vw;
+  height:100vh;
+  display: block;
+  background-color: grey;
+  opacity: 0.4;
+}
+#modal .contain-image{
+  height: var(--modalImageSize);
+  width: var(--modalImageSize);
+  position: fixed;
+  left: calc(50vw - var(--modalImageSize)/2);
+  top:calc(50vh - var(--modalImageSize)/2);
+  opacity:1;
+  z-index: 3;
+}
+#modal.hide-modal{
+  display: none;
+}
+
+/* ===== Contact us page ===== */
+#contactForms{
+  display: grid;
+  gap: 5px;
+  grid-template-areas:
+  'grid1 grid2'
+  'grid3 .'
+  'grid4 grid4';
+}
+#contactPage{
+  padding: 20px;
+  margin: 0 auto;
+  max-width: 600px;
+}
+#contactForms textarea{
+  width: calc(100% - 5px);
+  min-height: 80px;
+}
+#contactPage .label-text{
+  margin: 5px;
+}
+@media only screen and (max-width:400px){ 
+  #contactForms{
+    display: flex;
+    flex-direction: column;
+  }
+  #contactForms .label-text{
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.message{
+  font-size: 0.7rem;
+  color: orange;
+}
+.rough .message{
+  color: rgb(200,0,0);
+}
+
+/* ===== Info pages ===== */
+
+.info-page .top-line{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.info-page .overflow-hidden .text{
+  overflow: hidden;
+  height: 200px;
+}
+
+@media only screen and (max-width:500px){ 
+  .info-page .top-line{
+    flex-direction: column;
+  }
+}
+#show-button{
+  display: none;
+}
+.overflow-hidden #hide-button{
+  display: none;
+}
+.overflow-hidden #show-button{
+  display: block;
+}
+.info-page{
+  min-height: 200px;
+}
+#main-content{
+  margin: 10px;
+}
+.blog-image{
+  height: 200px;
+  width: 200px;
+}
+.info-page h1{
+  font-size: 20px;
+  margin: 10px;
+}
+.info-page h2{
+  font-size:15px;
+  margin: 10px;
+}

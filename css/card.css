@@ -10,6 +10,16 @@ button{
 .sort-buttons .selected-sort{
     background-color: rgb(80,80,80);
 }
+.testing{
+    display: none;
+    height: 50px;
+    margin-top: -50px;
+    width: 100%;
+    background-image: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,1));
+}
+.overflow-hidden .testing{
+    display: block;
+}
 .sort-buttons.hide{
     display: none;
 }

@@ -197,15 +197,10 @@ async function addElements(place,headline,itemType,displayQuantity,type,order) {
             card.addEventListener('mousedown',()=>clickFlag=true);
             card.addEventListener('focus', function() {
                 if (!clickFlag) {
-                    // Focus triggered by tab, not clicking
                     quickView(element);
                     window.scrollTo(0, 0);
-                    // window.scrollTo(0, 0);
                 }
-                // Reset the clickFlag
                 clickFlag = false;
-                
-                //
             });   
             if(inSearch){
                 console.log("b")
@@ -264,7 +259,7 @@ async function addElements(place,headline,itemType,displayQuantity,type,order) {
 function goToPage(itemType,element){
     console.log(itemType)
     localStorage.setItem('speedLoad', JSON.stringify(element));
-    if(itemType==="blogs" || itemType==="wideBlogs"){  
+    if(itemType==="blogs" || itemType==="wide-blogs"){  
         location.href=`blogPage.html?id=${element.id}`;
     }else if(itemType==="products"){
         quickView(element)

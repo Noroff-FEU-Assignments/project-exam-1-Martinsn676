@@ -134,7 +134,10 @@ function blogPageTemplate(element){return `
       <div class="text">
         ${element.content.rendered}
       </div>
-      <button id="show-button" onclick="toggleText()">Show</button>
+      <div class="testing">
+      </div>
+
+          <button id="show-button" onclick="toggleText()">Show</button>
       <button id="hide-button" onclick="toggleText()">Hide</button>
     </div>
     

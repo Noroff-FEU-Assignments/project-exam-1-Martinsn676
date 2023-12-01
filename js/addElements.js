@@ -9,7 +9,6 @@ async function addElements(place,headline,itemType,displayQuantity,type,order) {
     let orderName
     let addNumber
     let secondLoadNumber
-    let maxElements = 999
     let allElements
     let products = false;
     let blogs = false;

@@ -108,8 +108,16 @@ function checkSlider(id,maxElements,slideJump) {
   
   
   sliderItems = document.querySelectorAll(`#${id} .card`);
-  document.querySelector(`#${id} .left-slider`).addEventListener("click", () => updateSlider(-slideJump, sliderItems,maxElements));
-  document.querySelector(`#${id} .right-slider`).addEventListener("click", () => updateSlider(slideJump, sliderItems,maxElements));
+  document.querySelector(`#${id} .left-slider`).addEventListener("click", () => {
+    this.disabled=true;
+    updateSlider(-slideJump, sliderItems,maxElements)
+    this.disabled=false;
+  });
+  document.querySelector(`#${id} .right-slider`).addEventListener("click", () => {
+    this.disabled=true;
+    updateSlider(slideJump, sliderItems,maxElements)
+    this.disabled=false;
+  });
   updateSlider(0, sliderItems,maxElements)
 }
 function updateSlider(adjust, items,maxElements) {
@@ -123,6 +131,7 @@ function updateSlider(adjust, items,maxElements) {
   if(showNumber>=realQuantiy){
     showNumber-=realQuantiy;
   }
+  console.log(items.length,showNumber)
   if(maxShow>maxElements){
     for (let i = 0; i < items.length; i++) {
       items[i].classList.add("hidden-slider");

@@ -56,8 +56,7 @@ function checkForUnsent(){
     inputFields.forEach(element => {
         oldInput = JSON.parse(localStorage.getItem(`${element.id}`));
         if(oldInput && oldInput.length>0){
-            field=element.value;
-            field.value=oldInput;
+            element.value=oldInput;
             saveLoaded=true
         }
     });

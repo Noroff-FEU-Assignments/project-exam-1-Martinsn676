@@ -195,6 +195,7 @@ async function addElements(place,headline,itemType,displayQuantity,type,order) {
                     goToPage(itemType,element)
                 }
             });
+            card.addEventListener('mousedown',()=>clickFlag=true);
             card.addEventListener('focus', function() {
                 if (!clickFlag) {
                     // Focus triggered by tab, not clicking
@@ -262,12 +263,13 @@ async function addElements(place,headline,itemType,displayQuantity,type,order) {
 
 }
 function goToPage(itemType,element){
+    console.log(itemType)
     localStorage.setItem('speedLoad', JSON.stringify(element));
-    if(itemType==="blogs" || itemType==="wide-blogs"){  
+    if(itemType==="blogs" || itemType==="wideBlogs"){  
         location.href=`blogPage.html?id=${element.id}`;
     }else if(itemType==="products"){
         quickView(element)
-        
+
     }
 }
 function resizeCheck(changeFrom,width){
@@ -306,10 +308,10 @@ function addAttributes(type,element){
                 element.terms.forEach(element => {
                     DGname=element.name
                     desginere.forEach(element=>{
-                        if(DGname===element){
+                    if(DGname===element){
                         newHtml+=`<a href="#${DGname}">${DGname}</a> `
                     }else{
-                        newHtml+=`${DGname}`
+                        
                     }
                     });
                     

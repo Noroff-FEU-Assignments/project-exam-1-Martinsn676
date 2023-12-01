@@ -4,11 +4,12 @@ async function infoPageRender(place,type){
   const id = params.get("id");
   let element;
   let template;
+  
   let speedLoadElement = []
-  speedLoadElement = await JSON.parse(localStorage.getItem('speedLoad'))
+  //speedLoadElement = await JSON.parse(localStorage.getItem('speedLoad'))
   document.querySelector(`#${place}`).classList.add("info-page")
 
-  if(id===JSON.stringify(speedLoadElement.id)){
+  if(speedLoadElement && id===JSON.stringify(speedLoadElement.id)){
     console.log('speedLoad')
     element = speedLoadElement
   }else{
@@ -16,6 +17,7 @@ async function infoPageRender(place,type){
       element = await getApi(blogsUrl+"/"+id);
     }else if(type==="product"){
       element = await getApi(productsUrl+"/"+id);
+      console.log(element)
     }
   }
   if(element){

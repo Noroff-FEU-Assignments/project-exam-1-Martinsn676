@@ -42,7 +42,6 @@ const subjectContainer = document.querySelector("#subjectContainer")
 subjectContainer.addEventListener("keyup",()=>checkInput(subjectContainer,15,""));
 
 const messageContainer = document.querySelector("#messageContainer")
-messageContainer.style.resize = "none";
 messageContainer.addEventListener("keyup",()=>checkInput(messageContainer,25,""));
 
 const submitButton = document.querySelector("#submitButton")

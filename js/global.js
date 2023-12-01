@@ -15,6 +15,7 @@ let showNumber = 0;
 
 async function getApi(url, endUrlInfo, maxRetries = 1) {
   let endUrl = "";
+
   if (endUrlInfo) {
     for (let i = 0; i < endUrlInfo.length; i++) {
       if (i === 0) {
@@ -112,7 +113,6 @@ function checkSlider(id,maxElements,slideJump) {
   updateSlider(0, sliderItems,maxElements)
 }
 function updateSlider(adjust, items,maxElements) {
-  console.log(items.length)
   const realQuantiy = items.length-maxElements-1;
   let count = 0;
   let maxShow = window.innerWidth/150;
@@ -123,7 +123,6 @@ function updateSlider(adjust, items,maxElements) {
   if(showNumber>=realQuantiy){
     showNumber-=realQuantiy;
   }
-  console.log(items.length, showNumber)
   if(maxShow>maxElements){
     for (let i = 0; i < items.length; i++) {
       items[i].classList.add("hidden-slider");

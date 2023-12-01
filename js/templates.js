@@ -76,7 +76,7 @@ function quickViewTemplate (element){return `
           
         </div>
         <div class="grid3">
-          ${addAttributes("bg",element)}
+          ${addAttributes("bgg",element)}
         </div>
         <div class="scroll grid4">
           ${element.description}  

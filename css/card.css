@@ -18,6 +18,7 @@ button{
 }
 #elements-container{
     width: 100%;
+
 }
 
 main section{
@@ -90,6 +91,10 @@ button:disabled {
   .slider{
     overflow: hidden;
   }
+    #elements-container{
+    width: 100%;
+    justify-content: center;
+}
 }
 @media only screen and (min-width:900px){
     .slider .card{

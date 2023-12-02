@@ -38,7 +38,6 @@ searchContainer = document.querySelector("#search-container")
 }
 
 document.querySelector("#headerLinkButton").addEventListener("click",()=>{
-    nannyBall=true
     document.querySelector("#header .mobile").classList.toggle("hide")
     document.querySelector(".headerLinks.mobile").scrollIntoView({
           

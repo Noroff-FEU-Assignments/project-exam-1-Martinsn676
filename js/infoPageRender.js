@@ -29,6 +29,7 @@ async function infoPageRender(place,type){
     renderPage(place,template)
     function renderPage(place,template){
       document.querySelector(`#${place}`).innerHTML=`${template}`;
+      document.querySelector(".opacityBlur").addEventListener("click",()=>toggleText())
       addModalClick(document.querySelectorAll(".image"))
     }
   }

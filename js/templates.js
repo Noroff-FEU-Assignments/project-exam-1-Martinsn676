@@ -65,7 +65,7 @@ function productTemplate(element){return `
   `;}
 
 function quickViewTemplate (element){return `
-    <div class=" big-card">
+    <div class="card big-card">
         <div class="contain-image image grid1" style="background-image: url('${element.images[0].src}')">
         </div>
         <div class="grid2">
@@ -109,13 +109,16 @@ function blogTemplate(element){return `
 function wideBlogMainClasses(){return`
   card wide-blog-card flex-column`;}
 function wideBlogTemplate(element){return`
-    <div class="flex-row">
+    <div class="title flex-row">
       <h6>${element.title.rendered}</h6><h6>(${cleanTime(element.date)})</h6>
     </div>
-    <div class="grid-row-50">
+    <div class="content">
       <div class="contain-image image" style="background-image: url('${element.jetpack_featured_media_url}')"></div>
-      <div >
-        <p class="text">${cleanData(element.content.rendered)}</p>
+      <div class="overflow-hidden">
+        <div class="text"> 
+          ${cleanData(element.content.rendered)}
+          <div class="opacityBlur"></div>
+        </div>
         
       </div>   
     </div>
@@ -130,24 +133,16 @@ function blogPageTemplate(element){return `
       </div>
     </div>
 
-    <div class="text-box overflow-hidden  flex-column align-column">
+    <div class="text-box overflow-hidden flex-column align-column">
       <div class="text">
-        ${element.content.rendered}
+        ${cleanData(element.content.rendered)}
+        <div class="opacityBlur"></div>
       </div>
-      <div class="testing">
-      </div>
-
-          <button id="show-button" onclick="toggleText()">Show</button>
-      <button id="hide-button" onclick="toggleText()">Hide</button>
+      <button id="show-button" onclick="toggleText()">Show more</button>
+      <button id="hide-button" onclick="toggleText()">Show less</button>
     </div>
     
   `;}
-function toggleText(){
- 
-  test = document.querySelector(".text-box")
-  console.log(test)
-  test.classList.toggle("overflow-hidden")
-}
 function sliderButtonsTemplate(){return`
     <button class="left-slider slider-buttons"></button>
     <button class="right-slider slider-buttons"></button>
@@ -158,9 +153,8 @@ function modalTemplate(){return`
     <div id="modal-background"></div>
     <div id="modal-image"></div>
     </div>
-    `}
-
-function addSortButton(log, order) {
+  `}
+function addSortButtonTemplate(log, order) {
     let output = ""
     order.forEach(element => {
      output+=`<button type="button" disabled="true" id='${element[0]}' onclick="sortButtonClick('${log[0]}', '${log[1]}', '${log[2]}', ${log[3]}, ['${log[4][0]}', ${log[4][1]}, ${log[4][2]}], '${element[0]}')">${element[1]}</button>`
@@ -168,10 +162,3 @@ function addSortButton(log, order) {
     return output
 }
 
-function sortButtonClick(param1, param2, param3, param4, param5, order) {
-  //To prevent button jump on page
-  
-  const scrollPosition = window.scrollY;
-  addElements(param1, param2, param3, param4, param5, [order]);
-  window.scrollTo(0, scrollPosition);
-}

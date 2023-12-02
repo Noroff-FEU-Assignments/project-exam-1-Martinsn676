@@ -1,8 +1,6 @@
-//console.log("product.js")
- let clickFlag
-async function addElements(place,headline,itemType,displayQuantity,type,order) {
-    
-   
+let clickFlag
+
+async function addElements(place,headline,itemType,displayQuantity,type,order) {   
     let loadExtra = 0;
     let apiUrl
     let urlOrder
@@ -15,6 +13,7 @@ async function addElements(place,headline,itemType,displayQuantity,type,order) {
     let wideBlogs = false;
     let slider = false;
     let loadMore = false;
+    let selectedSort
 
     if(itemType==="products"){products=true;}
     if(itemType==="blogs"){blogs=true;}
@@ -37,7 +36,6 @@ async function addElements(place,headline,itemType,displayQuantity,type,order) {
         slider = false;
         loadMore = true;
         displayQuantity = 6
-        console.log("mobile version")
         window.addEventListener("resize", ()=> {
             resizeCheck("mobile",window.innerWidth)
         }); 
@@ -64,22 +62,19 @@ async function addElements(place,headline,itemType,displayQuantity,type,order) {
         apiUrl = blogsUrl;
     }
     mainContainer.querySelector("#sortButtonsID").innerHTML+=`
-        ${addSortButton(functionLog,[['titleAsc','Title Az'],['titleDesc','Title Za'],['dateDesc','Newest'],['dateAsc','Oldest']])}
+        ${addSortButtonTemplate(functionLog,[['titleAsc','Title Az'],['titleDesc','Title Za'],['dateDesc','Newest'],['dateAsc','Oldest']])}
     `;
-
-    // handling sorting
-    if(order[0]===""){
+    if(!order[0]){
+        order[0]=standardSort
+    }
+    selectedSort = mainContainer.querySelector(`#${order[0]}`)
+    if(!selectedSort){
         orderName = standardSort
+        selectedSort = mainContainer.querySelector(`#${orderName}`)
     }else{
-        orderName = order[0]
+        orderName=order[0]
     }
-    if(order[1]==="hide"){
-        mainContainer.querySelector(".sort-buttons").classList.add("hide")
-    }
-    // marking the selected sort
-    const selectedSort = mainContainer.querySelector(`#${orderName}`)
-    if(selectedSort){selectedSort.classList.add("selected-sort")}
-
+    selectedSort.classList.add("selected-sort")
     if(orderName === "titleAsc"){
         urlOrder = titleAsc
     }else if(orderName ==="titleDesc"){
@@ -91,7 +86,11 @@ async function addElements(place,headline,itemType,displayQuantity,type,order) {
     else if(orderName ==="dateDesc"){
         urlOrder = dateDesc
     }
-    if(type[0]==="loadMore"){
+    if(order[1]==="hide"){
+        mainContainer.querySelector(".sort-buttons").classList.add("hide")
+    }
+
+    if(loadMore){
         secondLoadNumber = type[1];
         loadMore=true;
     }
@@ -99,15 +98,12 @@ async function addElements(place,headline,itemType,displayQuantity,type,order) {
         container.classList.add("slider")
         loadExtra = document.body.clientWidth/150
         slider=true;
-        
-
     // add loading-templates    
         for(let i = 0 ; i < loadExtra && i < displayQuantity ; i++){
             container.innerHTML+=`<div class="loading-card ${mainTemplate}"></div>`;
         }
     }else{
-        
-        for(let i = 0 ; i < type[1] ; i++){
+        for(let i = 0 ; i < displayQuantity ; i++){
             container.innerHTML+=`<div class="loading-card ${mainTemplate}"></div>`;
         }
     }
@@ -132,7 +128,6 @@ async function addElements(place,headline,itemType,displayQuantity,type,order) {
     async function renderElements(elements,quantity,itemType,skipNumber,searching){
         let inSearch = false;
         let elementName
-     
         if(searching && searching[0]==="searching"){
             inSearch = true
             searchResultContainer = document.querySelector("#search-container")
@@ -203,7 +198,6 @@ async function addElements(place,headline,itemType,displayQuantity,type,order) {
                 clickFlag = false;
             });   
             if(inSearch){
-                console.log("b")
                 searchResultContainer.appendChild(card);
             }else{
                 container.appendChild(card);
@@ -257,7 +251,6 @@ async function addElements(place,headline,itemType,displayQuantity,type,order) {
 
 }
 function goToPage(itemType,element){
-    console.log(itemType)
     localStorage.setItem('speedLoad', JSON.stringify(element));
     if(itemType==="blogs" || itemType==="wide-blogs"){  
         location.href=`blogPage.html?id=${element.id}`;
@@ -268,12 +261,10 @@ function goToPage(itemType,element){
 }
 function resizeCheck(changeFrom,width){
     if(changeFrom==="mobile" && width>900){
-        console.log("change to pc")
-       // location.reload();
+        location.reload();
     }
     if(changeFrom==="pc" && width<900){
-        console.log("change to mobile")
-        //location.reload();
+        location.reload();
     }
 }
 desginere = ["Martin","Tonje"]

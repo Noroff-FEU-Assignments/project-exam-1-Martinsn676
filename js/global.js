@@ -100,23 +100,21 @@ fetch(apiUrl, requestOptions)
     // Handle errors here
   });
 }
-//postApi()
 function checkSlider(id,maxElements,slideJump) {
 
   if(!slideJump){slideJump=1;}
   let sliderItems;
   
-  
   sliderItems = document.querySelectorAll(`#${id} .card`);
   document.querySelector(`#${id} .left-slider`).addEventListener("click", () => {
-    this.disabled=true;
+    event.target.disabled=true;
     updateSlider(-slideJump, sliderItems,maxElements)
-    this.disabled=false;
+    event.target.disabled=false;
   });
   document.querySelector(`#${id} .right-slider`).addEventListener("click", () => {
-    this.disabled=true;
+    event.target.disabled=true;
     updateSlider(slideJump, sliderItems,maxElements)
-    this.disabled=false;
+    event.target.disabled=false;
   });
   updateSlider(0, sliderItems,maxElements)
 }
@@ -131,7 +129,6 @@ function updateSlider(adjust, items,maxElements) {
   if(showNumber>=realQuantiy){
     showNumber-=realQuantiy;
   }
-  console.log(items.length,showNumber)
   if(maxShow>maxElements){
     for (let i = 0; i < items.length; i++) {
       items[i].classList.add("hidden-slider");
@@ -160,10 +157,23 @@ function displayModal(element){
   }
 }
 function cleanData(data){
+  
   const div = document.createElement('div');
   div.innerHTML=data;
-  const cleanData = div.innerText;
-  return cleanData
+  let cleanData
+  const cleanDataSpans = div.querySelectorAll("span");
+  const cleanDataDivs = div.querySelectorAll("p");
+  let returnData = ""
+  if(cleanDataSpans.length>cleanDataDivs.length){
+      cleanData = cleanDataSpans
+    }else{
+      cleanData = cleanDataDivs
+  }
+  cleanData.forEach(element => {
+      const innerHtmlWithBr = element.innerHTML.replace(/<\/?br\s*[/]?>/g, '<br>');
+    returnData += `<p>${element.innerText}</p>`
+  });
+  return returnData;
 }
 function cleanTime(date){
   const formattedDate = moment(date, 'YYYY-MM-DD').format('DD-MM-YYYY');
@@ -178,3 +188,11 @@ window.addEventListener("scroll",()=>{
     document.querySelector("#header .mobile").classList.add("hide")        
   }
 });
+function sortButtonClick(param1, param2, param3, param4, param5, order) {
+  const scrollPosition = window.scrollY;
+  addElements(param1, param2, param3, param4, param5, [order]);
+  window.scrollTo(0, scrollPosition);
+}
+function toggleText(){
+  document.querySelector(".text-box").classList.toggle("overflow-hidden")
+}

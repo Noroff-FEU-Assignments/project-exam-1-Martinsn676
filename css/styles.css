@@ -41,6 +41,9 @@ body{
   padding: 5px;
 
 }
+#comments-container #new{
+  margin:10px;
+}
 header{
   margin-top: 30px;
 }

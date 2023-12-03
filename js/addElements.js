@@ -1,5 +1,5 @@
 let clickFlag
-
+let displaySize 
 async function addElements(place,headline,itemType,displayQuantity,type,order) {   
     let loadExtra = 0;
     let apiUrl
@@ -31,19 +31,21 @@ async function addElements(place,headline,itemType,displayQuantity,type,order) {
     const container = mainContainer.querySelector("#elements-container")
     
     // alpha, mobile version instead
-    if(slider && window.innerWidth<900){
-        type = ["loadMore",12]
-        slider = false;
-        loadMore = true;
-        displayQuantity = 6
+    if(window.innerWidth<900){
+        if(slider){
+            type = ["loadMore",12]
+            slider = false;
+            loadMore = true;
+            displayQuantity = 6
+        }
+        displaySize = "mobile"
         window.addEventListener("resize", ()=> {
-            resizeCheck("mobile",window.innerWidth)
+            resizeCheck(displaySize,window.innerWidth)
         }); 
         mainContainer.classList.add("display-section","mobile")
     }else{
-        window.addEventListener("resize", ()=> {
-            resizeCheck("pc",window.innerWidth)
-        }); 
+        displaySize = "pc"
+        window.addEventListener("resize", ()=>resizeCheck(displaySize,window.innerWidth)); 
         mainContainer.classList.add("display-section","pc")
     }
 
@@ -261,9 +263,11 @@ function goToPage(itemType,element){
 }
 function resizeCheck(changeFrom,width){
     if(changeFrom==="mobile" && width>900){
+        displaySize="pc"
         location.reload();
     }
     if(changeFrom==="pc" && width<900){
+        displaySize="mobile"
         location.reload();
     }
 }

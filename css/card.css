@@ -172,9 +172,12 @@ button:disabled {
 .blog-card{
     height: var(--blogCardHeight);
 }
-.card .contain-image{
+.blog-card .contain-image,.wide-blog-card .contain-image{
     height: 90%;
     width: 100%;
+}
+.product-card .contain-image{
+    width: 40%;
 }
 
 .blog-card > div{
@@ -197,12 +200,10 @@ button:disabled {
     gap: 10px;
 }
 
-.wide-blog-card{
-    width: calc(100% - 20px);
-    height: 200px;
-}
+
 @media only screen and (min-width:900px){
     .small-card{width: calc(20% - 20px);}   
+    .product-card{width: calc(25% - 20px);}
     .pc .sort-buttons{
         position: absolute;
         top:0px;
@@ -216,15 +217,19 @@ button:disabled {
 }
 @media only screen and (max-width:899px){
     .small-card{width: calc(33% - 20px);}   
-
+    
 }
 @media only screen and (max-width:599px){
     .small-card{width: calc(50% - 20px);}
+    
 }
 @media only screen and (max-width:315px){
     .small-card{width: calc(100% - 20px);}
 }
-
+.wide-blog-card{
+    width: calc(100% - 20px);
+    height: 200px;
+}
 .big-card{
     width: 100%;
 }

@@ -9,13 +9,13 @@ function headerTemplate(){return `
   </div>
   <div class="headerLinks pc flex-row">
     <a class="homeLink" href="index.html">Home</a>
-    <a class="shopLink" href="shop.html">Shop</a>
+    <a class="storeLink" href="store.html">Store</a>
     <a class="blogLink" href="blogs.html">Blogs</a>
     
   </div>
   <div class="headerLinks mobile hide flex-column align-column">
     <a class="homeLink" href="index.html">Home</a>
-    <a class="shopLink" href="shop.html">Shop</a>
+    <a class="storeLink" href="store.html">Store</a>
     <a class="blogLink" href="blogs.html">Blogs</a>
     <a class="contactLink" href="contact.html">Contact</a>
   </div>
@@ -119,7 +119,6 @@ function wideBlogTemplate(element){return`
           ${cleanData(element.content.rendered)}
           <div class="opacityBlur"></div>
         </div>
-        
       </div>   
     </div>
   `;}
@@ -132,7 +131,6 @@ function blogPageTemplate(element){return `
         <h1>${element.title.rendered}</h1>
       </div>
     </div>
-
     <div class="text-box overflow-hidden flex-column align-column">
       <div class="text">
         ${cleanData(element.content.rendered)}
@@ -141,6 +139,10 @@ function blogPageTemplate(element){return `
       <button id="show-button" onclick="toggleText()">Show more</button>
       <button id="hide-button" onclick="toggleText()">Show less</button>
     </div>
+    <section>
+      <h2>Comments</h2>
+      
+    </section>
     
   `;}
 function sliderButtonsTemplate(){return`

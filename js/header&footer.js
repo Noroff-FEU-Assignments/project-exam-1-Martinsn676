@@ -1,8 +1,8 @@
 document.querySelector("header").innerHTML=`${headerTemplate()}`
 document.querySelector("footer").innerHTML=`${footerTemplate()}`
-if(document.title==="Shop"){
-    document.querySelector(".pc .shopLink").classList.add("active")
-    document.querySelector(".mobile .shopLink").classList.add("active")
+if(document.title==="Store"){
+    document.querySelector(".pc .storeLink").classList.add("active")
+    document.querySelector(".mobile .storeLink").classList.add("active")
 }
 if(document.title==="Meeple Galaxy"){
     document.querySelector(".pc .homeLink").classList.add("active")

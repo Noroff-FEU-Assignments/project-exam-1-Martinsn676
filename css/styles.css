@@ -29,7 +29,15 @@ body{
 }
 .opacityBlur{
     display: none;
-
+}
+.comment{
+  background-color: rgb(200,200,200);
+  border-width: 5px;
+  border-color: black;
+  border: 2px;
+}
+.comment p{
+  margin-left: 20px;
 }
 .overflow-hidden .text{
   position: relative;
@@ -80,6 +88,16 @@ p{
   margin: 5px;
   
 }
+@media only screen and (min-width:900px){ 
+  #search-container{
+    width: var(--bodyMaxWidth);
+  }
+}
+@media only screen and (max-width:899px){ 
+  #search-container{
+    width: 100%;
+  }
+}
 /* ===== Header ===== */
 header a,footer a{
     text-decoration:none;
@@ -94,25 +112,21 @@ header .mobile a{
 header a.active{
   text-decoration:underline;
 }
-@media only screen and (min-width:900px){ 
+@media only screen and (min-width:500px){ 
 
   #header .mobile,#headerLinkButton{
     display: none;
   }
-  #search-container{
-    width: var(--bodyMaxWidth);
-  }
+
 }
-@media only screen and (max-width:899px){ 
+@media only screen and (max-width:499px){ 
     #header{
     flex-direction: column;
   }
   #header .pc, #header .mobile.hide{
     display: none;
   }
-  #search-container{
-    width: 100%;
-  }
+
 }
 .headerLinks.mobile{
   color: white;
@@ -138,6 +152,7 @@ header a.active{
   display: block;
   background-color: grey;
   opacity: 0.4;
+  z-index: 3;
 }
 #modal .contain-image{
   height: var(--modalImageSize);
@@ -146,7 +161,15 @@ header a.active{
   left: calc(50vw - var(--modalImageSize)/2);
   top:calc(50vh - var(--modalImageSize)/2);
   opacity:1;
-  z-index: 3;
+  z-index: 4;
+}
+@media only screen and (max-width:500px){ 
+  #modal .contain-image{
+    height: 80vw;
+    width: 80vw;
+    left: calc(50vw - 80vw / 2);
+    top:calc(50vh - 80vw / 2);
+  }
 }
 #modal.hide-modal{
   display: none;
@@ -194,10 +217,10 @@ header a.active{
 
 .message{
   font-size: 0.7rem;
-  color: orange;
+  color: rgba(0,0,0,0.8);
 }
 .rough .message{
-  color: rgb(200,0,0);
+  color: rgba(200,0,0,1);
 }
 
 /* ===== Info pages ===== */

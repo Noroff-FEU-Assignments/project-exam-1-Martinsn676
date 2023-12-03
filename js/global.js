@@ -4,6 +4,7 @@ const productsUrl = "https://prototype.meeplegalaxy.com/wp-json/wc/store/product
 const perPage = "per_page="
 
 const blogsUrl = "https://prototype.meeplegalaxy.com/wp-json/wp/v2/posts";
+const commentUrl = "https://prototype.meeplegalaxy.com/wp-json/wp/v2/comments?post="
 
 let titleAsc = 'orderby=title&order=asc'
 let titleDesc = 'orderby=title&order=desc';
@@ -36,7 +37,7 @@ async function getApi(url, endUrlInfo, maxRetries = 1) {
   });
 
   let retryCount = 0;
-
+  console.log(url + endUrl)
   while (retryCount <= maxRetries) {
     try {
       // Make the fetch request with the signal option.
@@ -176,7 +177,11 @@ function cleanData(data){
   return returnData;
 }
 function cleanTime(date){
-  const formattedDate = moment(date, 'YYYY-MM-DD').format('DD-MM-YYYY');
+const parsedDate = moment(date, 'YYYY-MM-DDTHHMMSS');
+  const formattedDate = parsedDate.format('DD-MM-YYYY')
+  const formattedTime = parsedDate.format('HH:MM:SS');
+console.log('Date:', formattedDate);
+console.log('Time:', formattedTime);
   return formattedDate
 }
 function handleFocus(element) {

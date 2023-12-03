@@ -28,20 +28,21 @@
 <header>
 </header>
 <main>
+    <h1>Home page</h1>
+    <section id="bc"></section>
+    <section id="bc2"></section>
+    <section id="pc"></section>
+    <section id="pc2"></section>
     
-    <section id="blogs-container"></section>
-    <section id="blogs-container2"></section>
-    <section id="nanny"></section>
-    <section id="products-container"></section>
 </main>
 <footer>
 </footer>
 <script>
-    //addElements("nanny","Nanny","products",5,["loadMore",20,10],["titleAsc","hide"])
-    addElements("blogs-container","Latest posts","blogs",5,["slider",20,5],["dateDesc","hide"])
+    addElements("bc","Latest posts","blogs",5,["slider",20,5],["dateDesc","hide"])
+    addElements("bc2","All posts","blogs",10,["loadMore",20,1],["titleAsc"])
+    addElements("pc","Games in our store","products",3,["slider",15,3])
+    addElements("pc2","Newest games","products",10,["loadMore",20,10],["dateDesc"])
 
-    addElements("blogs-container2","All posts","blogs",10,["loadMore",20,1],["tieAsc"])
-   // addElements("products-container","Games in our store","products",3,["slider",15,3])
 </script>
 </body>
 </html>

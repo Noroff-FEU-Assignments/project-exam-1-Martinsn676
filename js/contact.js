@@ -16,7 +16,6 @@ function checkInput(target,req,neg){
     }else if(req==="twoWords"){
         if(inputValue.includes(" ")){
             const [firstName, lastName] = inputValue.split(" ");
-s
             if(firstName.length>1 && lastName.length>1){
                 messageField.innerText = "";
                 return inputValue;

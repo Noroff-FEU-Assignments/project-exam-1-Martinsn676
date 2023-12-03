@@ -1,6 +1,6 @@
 /* ==== Header ==== */
 function headerTemplate(){return `
-<div id="header" class="links-passive flex-row align-row lazy-margin">    
+<div id="header" class="links-passive flex-row align-row">    
   <div class="flex-row">
     <a href="index.html">
       <img class="link-logo" src="https://prototype.meeplegalaxy.com/wp-content/uploads/2023/11/logo_wide_b73121fc-20a9-4cbc-b723-f7f21b51c4ee.png">
@@ -11,7 +11,7 @@ function headerTemplate(){return `
     <a class="homeLink" href="index.html">Home</a>
     <a class="storeLink" href="store.html">Store</a>
     <a class="blogLink" href="blogs.html">Blogs</a>
-    
+    <a class="contactLink" href="contact.html">Contact</a>
   </div>
   <div class="headerLinks mobile hide flex-column align-column">
     <a class="homeLink" href="index.html">Home</a>
@@ -22,7 +22,7 @@ function headerTemplate(){return `
 </div>
   `;}
 function footerTemplate(){return `
-  <div id="footer" class="links-passive lazy-margin flex-column align-column">
+  <div id="footer" class="links-passive flex-column align-column">
     <div>
     <a href="about.html">About us</a>
     <a href="contact.html">Contact</a>
@@ -63,8 +63,29 @@ function productTemplate(element){return `
       
     </div>
   `;}
-
 function quickViewTemplate (element){return `
+    <div class="card big-card">
+      <div class="top-part">
+        <div class="contain-image image grid1" style="background-image: url('${element.images[0].src}')">
+        </div>
+        <div class="grid2">
+          <h6>${element.name}</h6>
+          <h6>${addAttributes("dg",element)}</h6>
+          <h6>${addAttributes("pc",element)} </h6>
+          <h6>${addAttributes("pt",element)} </h6>
+        </div>
+        <div class="grid3">
+          ${addAttributes("bgg",element)}
+        </div>
+      </div>
+      <div class="bottom-part">
+        <div class="scroll">
+          ${element.description}  
+        </div>
+      </div>
+    </div>
+    `;}
+function quickViewTemplateBackup (element){return `
     <div class="card big-card">
         <div class="contain-image image grid1" style="background-image: url('${element.images[0].src}')">
         </div>
@@ -127,7 +148,8 @@ function blogPageTemplate(element){return `
     <div class="top-line">
       <div class="contain-image blog-image image" style="background-image: url('${element.jetpack_featured_media_url}')"></div>  
       <div class="flex-colum">
-        <h2>${cleanTime(element.date)}</h2>
+        <h2>Posted: ${cleanTime(element.date)}</h2>
+        <h2>Written by: ${element._embedded.author[0].name}</h2>
         <h1>${element.title.rendered}</h1>
       </div>
     </div>
@@ -141,7 +163,7 @@ function blogPageTemplate(element){return `
     </div>
     <section>
       <h2>Comments</h2>
-      
+      <div id="comments-container"></div>
     </section>
     
   `;}

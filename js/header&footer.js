@@ -13,6 +13,7 @@ if(document.title==="Blogs"){
     document.querySelector(".mobile .blogLink").classList.add("active")
 }
 if(document.title==="Contact us"){
+    document.querySelector(".pc .contactLink").classList.add("active")
     document.querySelector(".mobile .contactLink").classList.add("active")
 }
 
@@ -43,3 +44,12 @@ document.querySelector("#headerLinkButton").addEventListener("click",()=>{
           
           });
     });
+window.addEventListener("scroll",()=>{
+  if(window.scrollY>400){
+    mobileMenu =document.querySelector("#header .mobile")
+    if(mobileMenu){
+      mobileMenu.classList.add("hide")        
+
+    }
+  }
+});

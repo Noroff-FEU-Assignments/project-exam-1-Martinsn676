@@ -1,6 +1,6 @@
 :root {
   --cardTextColor: white;
-  --cardBGColor: 80,80,80;
+  --cardBGColor: 100,100,100;
   --otherBGColor: rgb(120,120,120);
   --headerColor: rgb(70,70,70);
   --generalTextColor: rgb(70,70,70);
@@ -32,9 +32,23 @@ body{
 }
 .comment{
   background-color: rgb(200,200,200);
-  border-width: 5px;
-  border-color: black;
-  border: 2px;
+  padding: 5px;
+  margin: 5px;
+}
+.comment-reply{
+  background-color: rgb(220,220,220);
+  margin-left: 60px;
+  padding: 5px;
+
+}
+header{
+  margin-top: 30px;
+}
+footer {
+  margin: 50px auto;
+}
+.reply-container button{
+  width: 50%;
 }
 .comment p{
   margin-left: 20px;
@@ -100,6 +114,7 @@ p{
 }
 /* ===== Header ===== */
 header a,footer a{
+    margin: 10px;
     text-decoration:none;
     color: var(--plainLinksColor);
 }
@@ -193,7 +208,7 @@ header a.active{
   width: calc(100% - 5px);
   min-height: 80px;
 }
-#messageContainer textarea{
+textarea{
   resize: vertical;
 }
 #contactPage .label-text{

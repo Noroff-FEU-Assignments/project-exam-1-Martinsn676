@@ -12,13 +12,17 @@ let dateAsc = 'orderby=date&order=asc';
 let dateDesc = 'orderby=date&order=desc';
 let standardSort = `titleAsc`;
 let showNumber = 0;
-
+const blogWidth = 150
+const productWidth = 180
 
 async function getApi(url, endUrlInfo, maxRetries = 1) {
   let endUrl = "";
 
   if (endUrlInfo) {
     for (let i = 0; i < endUrlInfo.length; i++) {
+      if(endUrlInfo[i]===""){
+        continue;
+      }
       if (i === 0) {
         endUrl += "?" + endUrlInfo[i];
       } else {
@@ -26,7 +30,6 @@ async function getApi(url, endUrlInfo, maxRetries = 1) {
       }
     }
   }
-
   // Create an AbortController and an AbortSignal.
   const controller = new AbortController();
   const signal = controller.signal;
@@ -37,7 +40,6 @@ async function getApi(url, endUrlInfo, maxRetries = 1) {
   });
 
   let retryCount = 0;
-  console.log(url + endUrl)
   while (retryCount <= maxRetries) {
     try {
       // Make the fetch request with the signal option.
@@ -135,6 +137,7 @@ function updateSlider(adjust, items,maxElements) {
       items[i].classList.add("hidden-slider");
       if(i > showNumber-1 && count<maxShow && count < maxElements){
           items[i].classList.remove("hidden-slider");
+          
           count++
       }
     }   
@@ -170,29 +173,21 @@ function cleanData(data){
     }else{
       cleanData = cleanDataDivs
   }
-  cleanData.forEach(element => {
+cleanData.forEach(element => {
       const innerHtmlWithBr = element.innerHTML.replace(/<\/?br\s*[/]?>/g, '<br>');
     returnData += `<p>${element.innerText}</p>`
   });
   return returnData;
 }
 function cleanTime(date){
-const parsedDate = moment(date, 'YYYY-MM-DD');
+  const parsedDate = moment(date, 'YYYY-MM-DD');
   const formattedDate = parsedDate.format('DD-MM-YYYY')
-  //const formattedTime = parsedDate.format('HH:MM:SS');
-console.log('Date:', formattedDate);
-//console.log('Time:', formattedTime);
   return formattedDate
 }
 function handleFocus(element) {
       quickView(element);
       // You can do additional actions or apply styles here
 }
-window.addEventListener("scroll",()=>{
-  if(window.scrollY>400){
-    document.querySelector("#header .mobile").classList.add("hide")        
-  }
-});
 function sortButtonClick(param1, param2, param3, param4, param5, order) {
   const scrollPosition = window.scrollY;
   addElements(param1, param2, param3, param4, param5, [order]);

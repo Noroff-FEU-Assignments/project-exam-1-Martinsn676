@@ -112,7 +112,7 @@ button:disabled {
     margin-top:0;
     margin-bottom:5px;
 }
-.card{cursor: pointer;}
+.small-card, .wide-blog-card{cursor: pointer;}
 .big-card,.big-card a{
     color: var(--generalTextColor);
 }
@@ -140,18 +140,18 @@ button:disabled {
 .product-card .info-text span{
     font-size: 0.7rem;
 }
-.big-card{
-    height: 500px;
-}
 .big-card .grid1{
     height: 150px;
 }
 .big-card h6{
-    margin: 10px;
+    margin: 5px;
+    font-size: large;
 }
-.big-card .contain-image{
-    height: 100%;
+.big-card .top-part{
+    width: 100%;
 }
+
+
 .big-card .scroll-box{
     width: 100%;
     height: 100%;
@@ -159,14 +159,34 @@ button:disabled {
     padding:0px;
     background:none;
 }
-.big-card{
-    max-height: 300px;
-    display: grid; 
-    gap:1rem;
-    grid-template-areas:
-    'grid1 grid2 grid3'
-    'grid4 grid4 grid4'
-    'grid5 grid5 grid5';
+@media only screen and (min-width:700px){
+    .big-card .top-part{
+        height: 200px;
+        display: grid; 
+        gap:1rem;
+        grid-template-rows: 1fr 1fr 1fr;
+        grid-template-areas:
+        'grid1 grid2 grid3';
+    }  
+    .big-card .bottom-part .scroll{
+        height: 200px;
+    }
+}
+@media only screen and (max-width:699px){
+    .grid3{
+        margin: 0 auto;
+    }
+    .big-card .top-part{
+        
+        display: grid; 
+        gap:1rem;
+        grid-template-areas:
+        'grid1 grid2'
+        'grid3 grid2';
+    }  
+     .big-card .bottom-part .scroll{
+        height: 100px;
+    }
 }
 /* ===== Blog cards ===== */
 .blog-card{
@@ -240,11 +260,10 @@ div.scroll {
     padding:10px;
     background-color: none;
     width: calc(100% - 30px);
-    height: 100%;
     overflow-x: hidden;
     overflow-y: auto;
     text-align:justify;
-    scrollbar-color: white grey;
+    /*scrollbar-color: white grey;*/
     scrollbar-width: thin;
 }
 .loading-card{

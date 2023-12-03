@@ -1,7 +1,7 @@
 let clickFlag
 let displaySize 
 async function addElements(place,headline,itemType,displayQuantity,type,order) {   
-
+    let loadExtra = 0;
     let apiUrl
     let urlOrder
     let orderName
@@ -14,8 +14,7 @@ async function addElements(place,headline,itemType,displayQuantity,type,order) {
     let slider = false;
     let loadMore = false;
     let selectedSort
-    let additionalUrl = ""
-    let amountPerLine
+
     if(itemType==="products"){products=true;}
     if(itemType==="blogs"){blogs=true;}
     if(itemType==="wide-blogs"){wideBlogs=true;}
@@ -54,15 +53,15 @@ async function addElements(place,headline,itemType,displayQuantity,type,order) {
     if(products){
         mainTemplate = productMainClasses();
         apiUrl = productsUrl;
-    }else{
-        apiUrl = blogsUrl;
-        additionalUrl = "_embed"
+        
     }
     if(blogs){
         mainTemplate = blogMainClasses();
+        apiUrl = blogsUrl;
     }
     if(wideBlogs){
         mainTemplate = wideBlogMainClasses();
+        apiUrl = blogsUrl;
     }
     mainContainer.querySelector("#sortButtonsID").innerHTML+=`
         ${addSortButtonTemplate(functionLog,[['titleAsc','Title Az'],['titleDesc','Title Za'],['dateDesc','Newest'],['dateAsc','Oldest']])}
@@ -92,35 +91,26 @@ async function addElements(place,headline,itemType,displayQuantity,type,order) {
     if(order[1]==="hide"){
         mainContainer.querySelector(".sort-buttons").classList.add("hide")
     }
-    if(displaySize==="pc"){
-        if(slider){
-            container.classList.add("slider")
-        }
-        if(loadMore){
-            if(products){
-                amountPerLine= Math.floor(document.body.clientWidth/productWidth)
-                
-            }else{
-                amountPerLine= Math.floor(document.body.clientWidth/blogWidth)
-            }
-            displayQuantity = (Math.ceil(displayQuantity/amountPerLine)*amountPerLine)
-        }
-    }
+
     if(loadMore){
         secondLoadNumber = type[1];
+        loadMore=true;
     }
-
-    //     slider=true;
-    // }else{
-    //     loadMore=true;
-    //     displayQuantity=2
-    // }
-    
-    for(let i = 0 ; i < displayQuantity ; i++){
+    if(slider && window.innerWidth> document.body.clientWidth + 50){
+        container.classList.add("slider")
+        loadExtra = document.body.clientWidth/150
+        slider=true;
+    // add loading-templates    
+        for(let i = 0 ; i < loadExtra && i < displayQuantity ; i++){
             container.innerHTML+=`<div class="loading-card ${mainTemplate}"></div>`;
         }
+    }else{
+        for(let i = 0 ; i < displayQuantity ; i++){
+            container.innerHTML+=`<div class="loading-card ${mainTemplate}"></div>`;
+        }
+    }
     // api call what is first viewed
-    const elements = await getApi(apiUrl,[perPage+displayQuantity,urlOrder,additionalUrl]);
+    const elements = await getApi(apiUrl,[perPage+displayQuantity,urlOrder]);
     if(elements){
         // reset container ebfore adding the real data
         if(slider){
@@ -137,25 +127,21 @@ async function addElements(place,headline,itemType,displayQuantity,type,order) {
         mainContainer.classList.add("fully-loaded")
     }
     
-    async function renderElements(elements,quantity,itemType,searching){
+    async function renderElements(elements,quantity,itemType,skipNumber,searching){
         let inSearch = false;
         let elementName
-        const prevCount = container.querySelectorAll(".small-card").length
-
-        
-        addNumber=prevCount
-        
         if(searching && searching[0]==="searching"){
             inSearch = true
             searchResultContainer = document.querySelector("#search-container")
             searchResultContainer.innerHTML=""
             searchResultContainer = document.querySelector("#search-container")
+
         }
+        if(!skipNumber){skipNumber=0;}
+        addNumber=skipNumber
 
         
-
-        
-        for (let i = addNumber; i < quantity   ; i++) {
+        for (let i = skipNumber; i < quantity   ; i++) {
        
 
             if(slider && addNumber===elements.length){
@@ -206,8 +192,6 @@ async function addElements(place,headline,itemType,displayQuantity,type,order) {
                 }
             });
             card.addEventListener('mousedown',()=>clickFlag=true);
-            card.addEventListener('touchstart', () =>clickFlag = true);
-            
             card.addEventListener('focus', function() {
                 if (!clickFlag) {
                     quickView(element);
@@ -223,7 +207,7 @@ async function addElements(place,headline,itemType,displayQuantity,type,order) {
             addNumber++
             // hide load-more button if showing all
             if(loadMore){
-                if(!elements[addNumber] && prevCount >0){
+                if(!elements[addNumber] && skipNumber >0){
                     mainContainer.querySelector("#loadMoreContainer").innerHTML=""
                 }
                 //mainContainer.querySelector("#showingInfo").innerHTML=`Showing ${addNumber} of `
@@ -233,9 +217,8 @@ async function addElements(place,headline,itemType,displayQuantity,type,order) {
     async function addFunctions(){
        
         if(slider){
-            console.log(displayQuantity,type[2])
             allElements = await getApi(apiUrl,[perPage+type[1],urlOrder]);
-            renderElements(allElements,(allElements.length+amountPerLine),itemType)
+            renderElements(allElements,(allElements.length+loadExtra),itemType,addNumber)
             checkSlider(mainContainer.id,displayQuantity,type[2])
         }
         if(loadMore){  
@@ -245,7 +228,7 @@ async function addElements(place,headline,itemType,displayQuantity,type,order) {
                 const skipNumber = addNumber
                 loadMoreContainer.innerHTML=""
                 loadMoreContainer.innerHTML=`<button id="loadMoreButton" >load more</button> `
-                mainContainer.querySelector("#loadMoreButton").addEventListener("click",()=>renderElements(allElements,addNumber*2,itemType))
+                mainContainer.querySelector("#loadMoreButton").addEventListener("click",()=>renderElements(allElements,allElements.length,itemType,skipNumber))
             }
         }
         //To keep sort buttons disabled to after load
@@ -257,7 +240,7 @@ async function addElements(place,headline,itemType,displayQuantity,type,order) {
         if(searchField){
             function updateSearch(allElements,search){
                 
-                renderElements(allElements,allElements.length,itemType,['searching',search])
+                renderElements(allElements,allElements.length,itemType,0,['searching',search])
             }  
             document.querySelector("#search-input").addEventListener('keyup', function (){
                 const scrollPosition = window.scrollY;
@@ -271,9 +254,9 @@ async function addElements(place,headline,itemType,displayQuantity,type,order) {
 }
 function goToPage(itemType,element){
     localStorage.setItem('speedLoad', JSON.stringify(element));
-    if(itemType=="blogs" || itemType=="wide-blogs"){  
+    if(itemType==="blogs" || itemType==="wide-blogs"){  
         location.href=`blogPage.html?id=${element.id}`;
-    }else if(itemType=="products"){
+    }else if(itemType==="products"){
         quickView(element)
 
     }

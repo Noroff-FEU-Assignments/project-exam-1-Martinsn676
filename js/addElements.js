@@ -191,14 +191,7 @@ async function addElements(place,headline,itemType,displayQuantity,type,order) {
                     goToPage(itemType,element)
                 }
             });
-            card.addEventListener('mousedown',()=>clickFlag=true);
-            card.addEventListener('focus', function() {
-                if (!clickFlag && displaySize==="pc") {
-                    quickView(element);
-                    window.scrollTo(0, 0);
-                }
-                clickFlag = false;
-            });   
+            
             if(inSearch){
                 searchResultContainer.appendChild(card);
             }else{

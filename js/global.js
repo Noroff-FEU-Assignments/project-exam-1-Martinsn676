@@ -177,11 +177,11 @@ function cleanData(data){
   return returnData;
 }
 function cleanTime(date){
-const parsedDate = moment(date, 'YYYY-MM-DDTHHMMSS');
+const parsedDate = moment(date, 'YYYY-MM-DD');
   const formattedDate = parsedDate.format('DD-MM-YYYY')
-  const formattedTime = parsedDate.format('HH:MM:SS');
+  //const formattedTime = parsedDate.format('HH:MM:SS');
 console.log('Date:', formattedDate);
-console.log('Time:', formattedTime);
+//console.log('Time:', formattedTime);
   return formattedDate
 }
 function handleFocus(element) {

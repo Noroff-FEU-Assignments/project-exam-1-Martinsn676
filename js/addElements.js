@@ -254,7 +254,7 @@ async function addElements(place,headline,itemType,displayQuantity,type,order) {
 }
 function goToPage(itemType,element){
     localStorage.setItem('speedLoad', JSON.stringify(element));
-    if(itemType==="blogs" || itemType==="wide-blogs"){  
+    if(itemType=="blogs" || itemType=="wide-blogs"){  
         location.href=`blogPage.html?id=${element.id}`;
     }else if(itemType==="products"){
         quickView(element)

@@ -16,7 +16,6 @@ async function infoPageRender(place,type){
       element = await getApi(blogsUrl+"/"+id,["_embed"]);
     }else if(type==="product"){
       element = await getApi(productsUrl+"/"+id,["_embed"]);
-      console.log(element)
     }
   }
   if(element){
@@ -52,7 +51,6 @@ async function loadComments(id){
   }
   comments.forEach(element => {
     if(element.parent===0){
-      console.log(element.content.rendered)
       html+=`
         <div class="comment">
           <span>${cleanTime(element.date)} wrote ${element.author_name}  </span>

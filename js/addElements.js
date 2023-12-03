@@ -137,27 +137,25 @@ async function addElements(place,headline,itemType,displayQuantity,type,order) {
         mainContainer.classList.add("fully-loaded")
     }
     
-    async function renderElements(elements,quantity,itemType,searching){
+    async function renderElements(elements,quantity,itemType,search){
         let inSearch = false;
         let elementName
         const prevCount = container.querySelectorAll(".small-card").length
-
-        
         addNumber=prevCount
-        
-        if(searching && searching[0]==="searching"){
-            inSearch = true
-            searchResultContainer = document.querySelector("#search-container")
+        searchResultContainer = document.querySelector("#search-container")
+        if(searchResultContainer){
             searchResultContainer.innerHTML=""
+        }
+        if(search){
+            console.log("re")
+            inSearch = true
+            addNumber=0
             searchResultContainer = document.querySelector("#search-container")
         }
-
-        
-
-        
+        if(slider){
+            quantity=quantity+prevCount
+        }        
         for (let i = addNumber; i < quantity   ; i++) {
-       
-
             if(slider && addNumber===elements.length){
                 addNumber = 0;
             }
@@ -166,7 +164,8 @@ async function addElements(place,headline,itemType,displayQuantity,type,order) {
                 break;
             }
             if(inSearch){
-                if(searching[1]===""){
+                if(search===""){
+                    searchResultContainer.innerHTML=""
                     break;
                 }
                 if(products){
@@ -175,12 +174,11 @@ async function addElements(place,headline,itemType,displayQuantity,type,order) {
                         elementName = element.title.rendered
                     }
                 
-                if(searchSkipCheck(elementName,searching[1])){
+                if(searchSkipCheck(elementName,search)){
                     addNumber++
                     continue;
                 }
             }
-
             const card = document.createElement('div');
             if(products){
                 card.className = productMainClasses();
@@ -233,9 +231,8 @@ async function addElements(place,headline,itemType,displayQuantity,type,order) {
     async function addFunctions(){
        
         if(slider){
-            console.log(displayQuantity,type[2])
             allElements = await getApi(apiUrl,[perPage+type[1],urlOrder]);
-            renderElements(allElements,(allElements.length+amountPerLine),itemType)
+            renderElements(allElements,(allElements.length),itemType)
             checkSlider(mainContainer.id,displayQuantity,type[2])
         }
         if(loadMore){  
@@ -256,12 +253,10 @@ async function addElements(place,headline,itemType,displayQuantity,type,order) {
          
         if(searchField){
             function updateSearch(allElements,search){
-                
-                renderElements(allElements,allElements.length,itemType,['searching',search])
+                renderElements(allElements,allElements.length,itemType,search)
             }  
             document.querySelector("#search-input").addEventListener('keyup', function (){
                 const scrollPosition = window.scrollY;
-                
                 updateSearch(allElements,this.value)
                 window.scrollTo(0, scrollPosition);
             });

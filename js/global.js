@@ -122,7 +122,7 @@ function checkSlider(id,maxElements,slideJump) {
   updateSlider(0, sliderItems,maxElements)
 }
 function updateSlider(adjust, items,maxElements) {
-  const realQuantiy = items.length-maxElements-1;
+  const realQuantiy = items.length-maxElements;
   let count = 0;
   let maxShow = window.innerWidth/150;
   showNumber += adjust;
@@ -132,6 +132,7 @@ function updateSlider(adjust, items,maxElements) {
   if(showNumber>=realQuantiy){
     showNumber-=realQuantiy;
   }
+ 
   if(maxShow>maxElements){
     for (let i = 0; i < items.length; i++) {
       items[i].classList.add("hidden-slider");

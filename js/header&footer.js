@@ -26,16 +26,15 @@ if(modal){
  const searchField = document.querySelector('#search')
 
 if(searchField){
-            searchField.innerHTML= `
-                <input id="search-input"></input>
-                <section id="search-container" class="flex-row flex-wrap"></section> 
-              
-            `;
+    searchField.innerHTML= `
+    <div class="flex-column">
+        <input id="search-input"></input>
+        <section id="search-container" class="flex-row flex-wrap"></section> 
+    </div>
+    `;
 searchContainer = document.querySelector("#search-container")
-                searchContainer.innerHTML =""
-                searchInput = document.querySelector("#search-input")
-        
-
+searchContainer.innerHTML =""
+searchInput = document.querySelector("#search-input")
 }
 
 document.querySelector("#headerLinkButton").addEventListener("click",()=>{

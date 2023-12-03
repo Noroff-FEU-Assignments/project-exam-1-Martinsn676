@@ -193,7 +193,7 @@ async function addElements(place,headline,itemType,displayQuantity,type,order) {
             });
             card.addEventListener('mousedown',()=>clickFlag=true);
             card.addEventListener('focus', function() {
-                if (!clickFlag) {
+                if (!clickFlag && displaySize==="pc") {
                     quickView(element);
                     window.scrollTo(0, 0);
                 }

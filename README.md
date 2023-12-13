@@ -2,24 +2,23 @@
 
 ![image](https://prototype.meeplegalaxy.com/wp-content/uploads/2023/12/portofilio-exam-1.png)
 
-A simple overview of the use/purpose of the project.
+Simple and effective
 
 ## Description
 
-Add a more detailed description of what your project entails and set out to do.
-
-You can add some bullet points if you'd like to:
+A simple and effective page combining products and blogs in a fast and convinient way
 
 - Good combination of blogs and products
+- Quick loadspeed and instant load
+- Seperate loads for initial view and hidden view
 - 
-- List item 3
 
 ## Built With
 
 You can list a the tech stack that you've used over here
 
-- [React.js](https://reactjs.org/)
-- [Bootstrap](https://getbootstrap.com)
+- [[React.js](https://reactjs.org/)
+- [Bootstrap](https://getbootstrap.com)](https://code.visualstudio.com/)
 
 ## Getting Started
 

@@ -1,6 +1,6 @@
 # Your project title
 
-![image](https://prototype.meeplegalaxy.com/wp-content/uploads/2023/12/portofilio-exam.png)
+![image](https://prototype.meeplegalaxy.com/wp-content/uploads/2023/12/portofilio-exam-1.png)
 
 A simple overview of the use/purpose of the project.
 

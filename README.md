@@ -33,6 +33,6 @@ git clone https://github.com/Noroff-FEU-Assignments/project-exam-1-Martinsn676.g
 
 You can contact me here
 
-https://www.linkedin.com/in/martin-sk%C3%A5la-nyg%C3%A5rd-0a6120263/
-https://www.facebook.com/meeplegalaxymartin/
+- [LinkedIn profile](https://www.linkedin.com/in/martin-sk%C3%A5la-nyg%C3%A5rd-0a6120263)
+- [Facebook] (https://www.facebook.com/meeplegalaxymartin)
 

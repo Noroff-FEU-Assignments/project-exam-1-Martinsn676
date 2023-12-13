@@ -17,8 +17,7 @@ A simple and effective page combining products and blogs in a fast and convinien
 
 You can list a the tech stack that you've used over here
 
-- [[React.js](https://reactjs.org/)
-- [Bootstrap](https://getbootstrap.com)](https://code.visualstudio.com/)
+- [Visual Studio](https://code.visualstudio.com/)]
 
 ## Getting Started
 

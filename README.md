@@ -29,6 +29,8 @@ For windows, use cmd to download files
 git clone https://github.com/Noroff-FEU-Assignments/project-exam-1-Martinsn676.git
 ```
 
+2. Open in visual studio live server plugin
+
 ## Contact
 
 You can contact me here

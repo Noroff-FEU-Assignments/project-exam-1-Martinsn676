@@ -31,6 +31,10 @@ git clone https://github.com/Noroff-FEU-Assignments/project-exam-1-Martinsn676.g
 
 2. Open in visual studio live server plugin
 
+### Open live page
+
+1. Go to [Netlify page](https://cool-sable-8eccbd.netlify.app)
+
 ## Contact
 
 You can contact me here
